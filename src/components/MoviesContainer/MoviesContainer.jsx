@@ -3,8 +3,9 @@ import { useState, useEffect } from "react";
 import { apiConfig } from "../../api/apiConfig";
 import { MovieIteam } from "../MovieItem/MovieItem";
 import axios from "axios";
+import styles from './MoviesContainer.module.scss';
 
-export const MovieContainer = () => {
+export const MoviesContainer = () => {
   const [movies, setMovies] = useState([]);
   // console.log(apiConfig.feature)
 
@@ -18,10 +19,10 @@ export const MovieContainer = () => {
     getMovies();
   }, []);
 
-  console.log(movies);
+  // console.log(movies);
 
   return (
-    <div>
+    <div className={styles.Movies_container}>
       {movies.length === 0 && <p>Cargando...</p>}
       {movies.map((movie) => {
         return <MovieIteam key={movie.id} data={movie} />;
