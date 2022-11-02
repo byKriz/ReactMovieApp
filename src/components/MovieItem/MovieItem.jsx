@@ -12,6 +12,11 @@ export const MovieIteam = ({ data }) => {
         <h3>{data.title}</h3>
         <span>{data.vote_average}</span>
       </div>
+
+      <div className={styles.movie_over}>
+        <h2>Overview:</h2>
+        <p>{data.overview}</p>
+      </div>
     </div>
   );
 };
