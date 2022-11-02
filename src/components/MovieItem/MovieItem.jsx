@@ -1,12 +1,18 @@
 import React from "react";
 import styles from "./MovieItem.module.scss";
 import { apiConfig } from "../../api/apiConfig";
+import { NoImage } from "../NoImage/NoImage";
 
 export const MovieIteam = ({ data }) => {
+  console.log(data.poster_path);
 
   return (
     <div className={styles.Movie_item}>
-      <img src={`${apiConfig.images}${data.poster_path}`} alt={data.title} />
+      {data.poster_path === null ? (
+        <NoImage />
+      ) : (
+        <img src={`${apiConfig.images}${data.poster_path}`} alt={data.title} />
+      )}
       <div className={styles.movie_info}>
         <h3>{data.title}</h3>
         <span>{data.vote_average}</span>
