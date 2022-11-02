@@ -3,30 +3,59 @@ import { useState, useEffect } from "react";
 import { apiConfig } from "../../api/apiConfig";
 import { MovieIteam } from "../MovieItem/MovieItem";
 import axios from "axios";
-import styles from './MoviesContainer.module.scss';
+import styles from "./MoviesContainer.module.scss";
 
 export const MoviesContainer = () => {
   const [movies, setMovies] = useState([]);
-  // console.log(apiConfig.feature)
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     const getMovies = async () => {
       const result = await axios.get(apiConfig.feature);
-      // console.log(result.data.results)
       setMovies(result.data.results);
     };
 
     getMovies();
   }, []);
 
-  // console.log(movies);
+  const handleOnSubmit = (e) => {
+    e.preventDefault();
+
+    const getMoviesSearch = async () => {
+      const result = await axios.get(apiConfig.search + searchTerm);
+      setMovies(result.data.results);
+    };
+
+    getMoviesSearch();
+  };
+
+  const handleOnSearch = (e) => {
+    setSearchTerm(e.target.value);
+    // console.log(e.target.value);
+  };
 
   return (
-    <div className={styles.Movies_container}>
-      {movies.length === 0 && <p>Cargando...</p>}
-      {movies.map((movie) => {
-        return <MovieIteam key={movie.id} data={movie} />;
-      })}
-    </div>
+    <>
+      {/* Header y buscador de peliculas */}
+      <header className={styles.Header}>
+        <form onSubmit={handleOnSubmit}>
+          <input
+            type="text"
+            placeholder="Search..."
+            className={styles.search_box}
+            value={searchTerm}
+            onChange={handleOnSearch}
+          />
+        </form>
+      </header>
+
+      {/* Contenedor de peliculas */}
+      <div className={styles.Movies_container}>
+        {movies.length === 0 && <p>Loading...</p>}
+        {movies.map((movie) => {
+          return <MovieIteam key={movie.id} data={movie} />;
+        })}
+      </div>
+    </>
   );
 };
