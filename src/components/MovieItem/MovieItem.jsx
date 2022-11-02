@@ -4,7 +4,6 @@ import { apiConfig } from "../../api/apiConfig";
 import { NoImage } from "../NoImage/NoImage";
 
 export const MovieIteam = ({ data }) => {
-  console.log(data.poster_path);
 
   return (
     <div className={styles.Movie_item}>
@@ -20,7 +19,7 @@ export const MovieIteam = ({ data }) => {
 
       <div className={styles.movie_over}>
         <h2>Overview:</h2>
-        <p>{data.overview}</p>
+        {data.overview === "" ? <p>Not available</p> : <p>{data.overview}</p>}
       </div>
     </div>
   );
