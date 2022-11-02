@@ -19,7 +19,9 @@ export const MoviesContainer = () => {
   }, []);
 
   const handleOnSubmit = (e) => {
-    e.preventDefault();
+    if (searchTerm !== "") {
+      e.preventDefault();
+    }
 
     const getMoviesSearch = async () => {
       const result = await axios.get(apiConfig.search + searchTerm);
