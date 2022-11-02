@@ -3,7 +3,6 @@ import styles from "./MovieItem.module.scss";
 import { apiConfig } from "../../api/apiConfig";
 
 export const MovieIteam = ({ data }) => {
-  console.log(data);
 
   return (
     <div className={styles.Movie_item}>
