@@ -1,5 +1,5 @@
 import "./App.scss";
-import { MovieContainer } from "./components/MoviesContainer/MoviesContainer";
+import { MoviesContainer } from "./components/MoviesContainer/MoviesContainer";
 
 
 function App() {
@@ -7,7 +7,7 @@ function App() {
 
   return (
     <div className="App">
-      <MovieContainer />
+      <MoviesContainer />
     </div>
   );
 }
