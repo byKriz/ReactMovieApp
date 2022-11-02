@@ -4,5 +4,3 @@ export const apiConfig = {
     images: import.meta.env.VITE_IMAGES,
     search: import.meta.env.VITE_SEARCH,
 }
-
-console.log(apiConfig.apiKey)
